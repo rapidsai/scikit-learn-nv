@@ -1,0 +1,41 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+
+[project]
+name = "scikit-learn-nv"
+version = "0.0.1"
+authors = [
+  { name="Tim Head", email="betatim@gmail.com" },
+]
+description = "A NVIDIA accelerated backend for scikit-learn"
+readme = "README.md"
+requires-python = ">=3.7"
+dependencies = [
+    "scikit-learn"
+]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+
+[project.urls]
+"Homepage" = "https://github.com/rapidsai/scikit-learn-nv"
+"Bug Tracker" = "https://github.com/rapidsai/scikit-learn-nv/issues"
+
+
+[project.entry-points.sklearn_engines]
+kmeans = "sklearn_nv.kmeans:KMeansEngine"
+
+
+[tool.black]
+target_version = ['py38', 'py39', 'py310']
+preview = true
+exclude = '''
+/(
+    \.eggs         # exclude a few common directories in the
+  | \.git          # root of the project
+  | \.vscode
+)/
+'''
