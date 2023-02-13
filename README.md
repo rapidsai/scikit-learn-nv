@@ -34,7 +34,7 @@ as this plugin, and its dependencies:
    (cd scikit-learn; gh pr checkout 25535)
    ```
 
-5. Install the scikit-learn development version with:
+5. Install the scikit-learn development version by running the following in the folder you checked the code out to:
 
    ```commandline
    pip install --no-build-isolation -e .
