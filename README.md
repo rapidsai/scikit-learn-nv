@@ -14,25 +14,32 @@ as this plugin, and its dependencies:
    conda create -n sklearn-nv -c conda-forge python=3.9 numpy scipy matplotlib cython compilers joblib threadpoolctl
    ```
 
-2. Install the nightly build of `pylibraft`:
-
-   ```commandline
-   conda install -c conda-forge -c rapidsai-nightly -c nvidia --no-channel-priority pylibraft=23.04 cupy rmm
-   ```
-
-3. Activate the environment:
+2. Activate the environment:
 
    ```commandline
    conda activate sklearn-nv
    ```
 
-4. Checkout and install the development version of scikit-learn from the `feature/engine-api` branch
+3. Install the nightly build of `pylibraft`:
+
+   ```commandline
+   conda install -c conda-forge -c rapidsai-nightly -c nvidia --no-channel-priority pylibraft=23.04 cupy rmm
+   ```
+
+4. Checkout the development version of scikit-learn from the `feature/engine-api` branch
    (see [`scikit-learn#25535`](https://github.com/scikit-learn/scikit-learn/pull/25535). Using [`gh`](https://cli.github.com/):
 
    ```commandline
    gh repo clone scikit-learn/scikit-learn
    (cd scikit-learn; gh pr checkout 25535)
    ```
+
+5. Install the scikit-learn development version with:
+
+   ```commandline
+   pip install --no-build-isolation -e .
+   ```
+
 6. Install this plugin by checking out this repository. Using [`gh`](https://cli.github.com/):
 
    ```commandline
