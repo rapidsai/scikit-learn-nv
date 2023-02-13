@@ -6,23 +6,46 @@
 ## Install
 
 To install this plugin you need to install a in development version of scikit-learn as well
-as this plugin, and the its dependencies:
+as this plugin, and its dependencies:
 
-1.  Create a new conda environment with `conda create -n sklearn-nv -c conda-forge python=3.9 numpy scipy matplotlib cython compilers joblib threadpoolctl`
-2. Install the nightly build of pylibraft: `conda install -n sklearn-nv -c conda-forge -c rapidsai-nightly -c nvidia pylibraft=23.04 cupy rmm`
-3. Activate the environment: `conda activate sklearn-nv`
-4. Checkout the in development version of scikit-learn from [pull request #25535](https://github.com/scikit-learn/scikit-learn/pull/25535) ([get gh](https://cli.github.com/))
-```
-gh repo clone scikit-learn/scikit-learn
-(cd scikit-learn; gh pr checkout 25535)
-```
-5. Install the scikit-learn development version with `pip install --no-build-isolation -e scikit-learn`
-6. Install this plugin by checking out this repository
-```
-gh repo clone rapidsai/scikit-learn-nv
-pip install -e scikit-learn-nv
-```
+1. Create a new conda environment:
 
+   ```commandline
+   conda create -n sklearn-nv -c conda-forge python=3.9 numpy scipy matplotlib cython compilers joblib threadpoolctl
+   ```
+
+2. Activate the environment:
+
+   ```commandline
+   conda activate sklearn-nv
+   ```
+
+3. Install the nightly build of `pylibraft`:
+
+   ```commandline
+   conda install -c conda-forge -c rapidsai-nightly -c nvidia --no-channel-priority pylibraft=23.04 cupy rmm
+   ```
+
+4. Checkout the development version of scikit-learn from the `feature/engine-api` branch
+   (see [`scikit-learn#25535`](https://github.com/scikit-learn/scikit-learn/pull/25535). Using [`gh`](https://cli.github.com/):
+
+   ```commandline
+   gh repo clone scikit-learn/scikit-learn
+   (cd scikit-learn; gh pr checkout 25535)
+   ```
+
+5. Install the scikit-learn development version by running the following in the folder you checked the code out to:
+
+   ```commandline
+   pip install --no-build-isolation -e .
+   ```
+
+6. Install this plugin by checking out this repository. Using [`gh`](https://cli.github.com/):
+
+   ```commandline
+   gh repo clone rapidsai/scikit-learn-nv
+   pip install -e scikit-learn-nv
+   ```
 
 ## Running
 
