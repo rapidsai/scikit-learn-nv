@@ -17,7 +17,7 @@ as this plugin, and its dependencies:
 2. Install the nightly build of `pylibraft`:
 
    ```commandline
-   conda install -c conda-forge -c rapidsai-nightly -c nvidia pylibraft=23.04 cupy rmm
+   conda install -c conda-forge -c rapidsai-nightly -c nvidia --no-channel-priority pylibraft=23.04 cupy rmm
    ```
 
 3. Activate the environment:
