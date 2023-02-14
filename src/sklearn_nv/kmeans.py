@@ -164,12 +164,18 @@ class KMeansEngine:  # (_kmeans.KMeansCythonEngine):
         # XXX cp.unique() doesn't support the axis arg yet :(
         return cluster_labels.shape[0]
 
+    def prepare_prediction(self, X, sample_weight=None):
+        X = cp.asarray(X)
+        if sample_weight is not None:
+            sample_weight = cp.asarray(sample_weight)
+        return X, sample_weight
+
     def get_labels(self, X, sample_weight):
         X = cp.asarray(X)
         labels = pairwise_distances_argmin(
-            X, self.estimator.cluster_centers_, handle=self.raft_handle
+            X,
+            self.estimator.cluster_centers_,
         )
-        self.raft_handle.sync()
         return labels.ravel()
 
     def is_same_clustering(self, labels, best_labels, n_clusters):
