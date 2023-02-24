@@ -3,6 +3,7 @@ import numpy as np
 import scipy.sparse as sp
 
 import cupy as cp
+import cupy.array_api
 
 from sklearn.utils import check_random_state, check_array
 from sklearn.utils.validation import _check_sample_weight, _is_arraylike_not_scalar
@@ -92,6 +93,10 @@ class KMeansEngine:  # (_kmeans.KMeansCythonEngine):
 
     def prepare_fit(self, X, y=None, sample_weight=None):
         estimator = self.estimator
+
+        if isinstance(X, cp.ndarray):
+            X = cp.array_api.asarray(X)
+
         X = estimator._validate_data(
             X,
             accept_sparse="csr",
