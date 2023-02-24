@@ -56,12 +56,34 @@ import sklearn
 from sklearn.cluster import KMeans
 from sklearn.datasets import make_blobs
 
-import cupy as cp
 
 X, y_true = make_blobs(
     n_samples=300, centers=4, n_features=3, cluster_std=0.60, random_state=10
 )
 with sklearn.config_context(engine_provider="sklearn_nv"):
+    km = KMeans(random_state=42)
+    km.fit(X)
+    y_pred = km.predict(X)
+```
+
+To use `cupy` arrays as input you currently need to activate the plugin as well as
+"Array API dispatching".
+
+```python
+import cupy as cp
+import sklearn
+from sklearn.cluster import KMeans
+from sklearn.datasets import make_blobs
+
+# generate input data and convert it to cupy arrays
+X, y_true = make_blobs(
+    n_samples=300, centers=4, n_features=3, cluster_std=0.60, random_state=10
+)
+X = cp.asarray(X)
+y_true = cp.asarray(y_true)
+
+# Activate Array API dispatching and the plugin
+with sklearn.config_context(array_api_dispatch=True, engine_provider="sklearn_nv"):
     km = KMeans(random_state=42)
     km.fit(X)
     y_pred = km.predict(X)
