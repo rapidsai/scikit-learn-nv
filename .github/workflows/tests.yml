@@ -28,7 +28,5 @@ jobs:
           micromamba create -y -n sklearn-gpu -c conda-forge python=3.10 numpy scipy cython joblib threadpoolctl compilers scipy
       - name: Run it
         run: |
-          eval "$(./bin/micromamba shell hook --shell )"
-          micromamba activate sklearn-gpu
-          python -v
+          ./bin/micromamba run -n sklearn-gpu python -v
           
