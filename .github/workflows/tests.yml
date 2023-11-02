@@ -29,7 +29,7 @@ jobs:
           micromamba activate sklearn-gpu
       - name: Run it
         run: |
-          which python
+          python -v
           micromamba activate sklearn-gpu
-          which python
+          python -v
           
