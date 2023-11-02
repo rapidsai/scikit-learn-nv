@@ -20,16 +20,16 @@ jobs:
         run: |
           apt-get -qq update
           apt-get install --yes curl bzip2
-      - name: hello
+      - name: Setup conda env
         run: |
-          echo "directory"
-          pwd
-          ls
           mkdir bin
-          echo installing umamba
           curl -Ls https://micro.mamba.pm/api/micromamba/linux-64/latest | tar -xvj bin/micromamba
-          ls
-          ./bin/micromamba
           eval "$(./bin/micromamba shell hook -s posix)"
-          micromamba
+          micromamba create -y -n sklearn-gpu -c conda-forge python=3.10 numpy scipy cython joblib threadpoolctl compilers scipy
+          micromamba activate sklearn-gpu
+      - name: Run it
+        run: |
+          which python
+          micromamba activate sklearn-gpu
+          which python
           
