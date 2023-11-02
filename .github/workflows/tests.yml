@@ -19,7 +19,7 @@ jobs:
       - name: Update and install things
         run: |
           apt-get -qq update
-          apt-get install --yes tar
+          apt-get install --yes curl
       - name: hello
         run: |
           echo "directory"
