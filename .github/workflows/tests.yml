@@ -19,7 +19,7 @@ jobs:
       - name: Update and install things
         run: |
           apt-get -qq update
-          apt-get install --yes curl
+          apt-get install --yes curl bzip2
       - name: hello
         run: |
           echo "directory"
