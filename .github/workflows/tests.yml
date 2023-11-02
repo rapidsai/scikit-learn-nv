@@ -9,8 +9,8 @@ jobs:
       - name: hello
         run: echo "hello"
   job2_gpu:
-    runs-on: linux-amd64-gpu-t4-latest-1
-    container: # GPU jobs must run in a container
+    runs-on: linux-arm64-gpu-a100-latest-1
+    container:
       image: nvidia/cuda:12.2.2-base-ubuntu22.04
       env:
         NVIDIA_VISIBLE_DEVICES: "0"
