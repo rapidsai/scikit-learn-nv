@@ -26,9 +26,8 @@ jobs:
           curl -Ls https://micro.mamba.pm/api/micromamba/linux-64/latest | tar -xvj bin/micromamba
           eval "$(./bin/micromamba shell hook -s posix)"
           micromamba create -y -n sklearn-gpu -c conda-forge python=3.10 numpy scipy cython joblib threadpoolctl compilers scipy
-          micromamba activate sklearn-gpu
       - name: Run it
         run: |
-          micromamba activate sklearn-gpu
+          ./bin/micromamba activate sklearn-gpu
           python -v
           
