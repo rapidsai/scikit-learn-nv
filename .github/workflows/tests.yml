@@ -17,9 +17,9 @@ jobs:
     steps:
       - name: Update and install things
         run: |
-          apt-get update
-          apt-get upgrade
-          apt-get install tar
+          ENV DEBIAN_FRONTEND=noninteractive
+          apt-get -qq update
+          apt-get install --yes tar
       - name: hello
         run: |
           echo "directory"
