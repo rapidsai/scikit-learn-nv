@@ -19,7 +19,7 @@ jobs:
       - name: Update and install things
         run: |
           apt-get -qq update
-          apt-get install --yes curl bzip2
+          apt-get install --yes curl bzip2 git
       - name: Setup conda env
         run: |
           cd ..
@@ -28,12 +28,20 @@ jobs:
           eval "$(bin/micromamba shell hook -s posix)"
           micromamba create -y -n sklearn-gpu -c conda-forge python=3.10 numpy scipy cython joblib threadpoolctl compilers scipy
           cd -
-      - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
         with:
           fetch-depth: '0'
-      - name: List repository contents
+      - name: Install _custom_ scikit-learn version
+        run: |
+          mkdir ../scikit-learn
+          pushd ../scikit-learn
+          git clone https://github.com/scikit-learn/scikit-learn
+          git checkout feature/engine-api
+          cd scikit-learn
+          ../../bin/micromamba run -n sklearn-gpu pip install --no-build-isolation -e .
+          popd
+      - name: Install plugin
         run: |
           ../bin/micromamba run -n sklearn-gpu python -v
-          echo "repo contents"
-          ls
           
