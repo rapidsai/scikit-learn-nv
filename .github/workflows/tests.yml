@@ -37,8 +37,8 @@ jobs:
           mkdir ../scikit-learn
           cd ../scikit-learn
           git clone https://github.com/scikit-learn/scikit-learn
-          git checkout feature/engine-api
           cd scikit-learn
+          git checkout feature/engine-api
           ../../bin/micromamba run -n sklearn-gpu pip install --no-build-isolation -e .
           cd ../../scikit-learn-nv
       - name: Install plugin
