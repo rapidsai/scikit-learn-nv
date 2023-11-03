@@ -22,11 +22,16 @@ jobs:
           apt-get install --yes curl bzip2
       - name: Setup conda env
         run: |
-          mkdir bin
-          curl -Ls https://micro.mamba.pm/api/micromamba/linux-64/latest | tar -xvj bin/micromamba
-          eval "$(./bin/micromamba shell hook -s posix)"
+          mkdir ../bin
+          curl -Ls https://micro.mamba.pm/api/micromamba/linux-64/latest | tar -xvj ../bin/micromamba
+          eval "$(../bin/micromamba shell hook -s posix)"
           micromamba create -y -n sklearn-gpu -c conda-forge python=3.10 numpy scipy cython joblib threadpoolctl compilers scipy
-      - name: Run it
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: '0'
+      - name: List repository contents
         run: |
-          ./bin/micromamba run -n sklearn-gpu python -v
+          ../bin/micromamba run -n sklearn-gpu python -v
+          echo "repo contents"
+          ls
           
