@@ -39,9 +39,9 @@ jobs:
           git clone https://github.com/scikit-learn/scikit-learn
           cd scikit-learn
           git checkout feature/engine-api
-          ../../bin/micromamba run -n sklearn-gpu pip install --no-build-isolation -e .
+          ../../bin/micromamba run -n sklearn-gpu python -m pip install --no-build-isolation -e .
           cd ../../scikit-learn-nv
       - name: Install plugin
         run: |
-          ../bin/micromamba run -n sklearn-gpu python -v
+          ../bin/micromamba run -n sklearn-gpu python -c "import sklearn; print('scikit-learn version:', sklearn.__version__)"
           
