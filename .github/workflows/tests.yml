@@ -35,12 +35,12 @@ jobs:
       - name: Install _custom_ scikit-learn version
         run: |
           mkdir ../scikit-learn
-          pushd ../scikit-learn
+          cd ../scikit-learn
           git clone https://github.com/scikit-learn/scikit-learn
           git checkout feature/engine-api
           cd scikit-learn
           ../../bin/micromamba run -n sklearn-gpu pip install --no-build-isolation -e .
-          popd
+          cd ../../scikit-learn-nv
       - name: Install plugin
         run: |
           ../bin/micromamba run -n sklearn-gpu python -v
